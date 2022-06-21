@@ -32,8 +32,8 @@ const App = () =>{
       {posts.map((post: Post) => {  
         return <PostCardStyled id={post.id} name={post.name} post={post.post}/>
       })}
-      <InputPost name='user' backgroundColor='white' placeholder='who r u' onChange={(e) => setPostNameInput(e.target.value)}/>
-      <InputPost name='post' backgroundColor="lightyellow" placeholder="type your post" onChange={(e) => setPostPostInput(e.target.value)}/>
+      <InputPost name='user' value={postNameInput} backgroundColor='white' placeholder='who r u' onChange={(e) => setPostNameInput(e.target.value)}/>
+      <InputPost name='post' value={postPostInput} backgroundColor="lightyellow" placeholder="type your post" onChange={(e) => setPostPostInput(e.target.value)}/>
       <button onClick={handleAddPosts}>Post</button>
     </>
   );

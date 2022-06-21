@@ -6,10 +6,11 @@ interface InputProps{
     className?: string;
     name?: string;
     backgroundColor?: any;
+    value?: string;
 }
 
-const Input: React.FC<InputProps> = memo(({name, backgroundColor, className, placeholder, onChange}) => {
-    return <input className={className} name={name} placeholder={placeholder} type='text' onChange={onChange}/>;    
+const Input: React.FC<InputProps> = memo(({value, name, backgroundColor, className, placeholder, onChange}) => {
+    return <input value={value} className={className} name={name} placeholder={placeholder} type='text' onChange={onChange}/>;    
 });
 
 export default Input
