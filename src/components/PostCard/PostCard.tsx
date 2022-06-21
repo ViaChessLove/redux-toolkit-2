@@ -1,5 +1,5 @@
-import React from 'react';
-import {AiFillDelete} from 'react-icons/ai'
+import React, { useState } from 'react';
+import {AiFillDelete, AiFillDislike, AiFillEdit, AiFillLike, AiOutlineDislike, AiOutlineLike} from 'react-icons/ai'
 import { useDispatch } from 'react-redux';
 import { removePost } from '../../features/postSlice';
 
@@ -12,16 +12,38 @@ interface PostCardProps {
 
 const PostCard: React.FC<PostCardProps> = ({id, name, post, className}) => {
     const dispatch = useDispatch();
-
+    const [mark, setMark] = useState<boolean>(false);
+    const [like, setLike] = useState<boolean>(false);
+    const [dislike, setDislike] = useState<boolean>(false);
     return (
             <div className={className}>
-                <div 
-                    style={{display: 'flex',justifyContent: 'flex-end', fontSize: '28px', paddingTop: '5px', paddingRight: '5px'}}
-                    onClick={() => dispatch(removePost({
-                        id, name, post
-                    }))}
+                <div style={{display: 'flex',justifyContent: 'space-between', fontSize: '28px', paddingTop: '5px', paddingRight: '5px', paddingLeft: '5px'}}>
+                    <div 
+                        onClick={() => dispatch(removePost({
+                            id, name, post
+                        }))}
+                        >
+                        <AiFillDelete/>
+                    </div>
+                    <div
                     >
-                    <AiFillDelete/>
+                        <AiFillEdit/>
+                    </div>
+                    <div onClick={()=>{
+                        like? 
+                        setLike(false as boolean)
+                        :
+                        setLike(true as boolean)
+                        }}>
+                        {like? <AiFillLike/>: <AiOutlineLike/>}
+                    </div>
+                    <div onClick={()=>{
+                        dislike? 
+                        setDislike(false as boolean):
+                        setDislike(true as boolean)
+                        }}>
+                        {dislike? <AiFillDislike/>: <AiOutlineDislike/>}
+                    </div>
                 </div>
                 <div>
                     <h1 style={{display: 'flex', justifyContent: 'center'}}>{name}</h1>
