@@ -7,6 +7,13 @@ import { PostCardStyled } from './components/PostCard/PostCard.style';
 import { addPost, Post } from './features/postSlice';
 import {GlobalStyles} from './Global.style';
 import {v4 as uuid} from 'uuid';
+import styled from 'styled-components';
+
+const StyledButton = styled.button`
+  margin-top: 20px;
+  margin-left: 43%;
+  font-size: 18px;
+`
 
 const App = () =>{
   const dispatch = useDispatch();
@@ -15,6 +22,8 @@ const App = () =>{
   const [postPostInput, setPostPostInput] = useState<string>('');
 
   const posts = useSelector((state: RootState) => state.posts.value);
+  
+
   
   const handleAddPosts = () => {
     if (!postNameInput || !postPostInput) return;
@@ -34,7 +43,8 @@ const App = () =>{
       })}
       <InputPost name='user' value={postNameInput} backgroundColor='white' placeholder='who r u' onChange={(e) => setPostNameInput(e.target.value)}/>
       <InputPost name='post' value={postPostInput} backgroundColor="lightyellow" placeholder="type your post" onChange={(e) => setPostPostInput(e.target.value)}/>
-      <button onClick={handleAddPosts}>Post</button>
+      <StyledButton onClick={handleAddPosts}>Post</StyledButton>
+
     </>
   );
 }
