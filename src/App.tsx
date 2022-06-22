@@ -21,7 +21,11 @@ const App = () =>{
   const [postNameInput, setPostNameInput] = useState<string>('');
   const [postPostInput, setPostPostInput] = useState<string>('');
 
-  const posts = useSelector((state: RootState) => state.posts.value);
+  const posts = useSelector((state: RootState) => {
+    return state.posts.value
+  });
+
+  const numberOfPosts = useSelector((state: RootState) => state.posts.postNumber)
   
 
   
@@ -38,13 +42,13 @@ const App = () =>{
     <>
       <GlobalStyles/>
       <h1 style={{textAlign: 'center'}}>Posts</h1>
+      <h3 style={{textAlign: 'center'}}>Posts number - {numberOfPosts}</h3>
       {posts.map((post: Post) => {  
         return <PostCardStyled id={post.id} name={post.name} post={post.post}/>
       })}
       <InputPost name='user' value={postNameInput} backgroundColor='white' placeholder='who r u' onChange={(e) => setPostNameInput(e.target.value)}/>
       <InputPost name='post' value={postPostInput} backgroundColor="lightyellow" placeholder="type your post" onChange={(e) => setPostPostInput(e.target.value)}/>
       <StyledButton onClick={handleAddPosts}>Post</StyledButton>
-
     </>
   );
 }

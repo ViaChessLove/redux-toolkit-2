@@ -10,9 +10,11 @@ export interface Post {
 
 interface PostState{
     value: Post[];
+    postNumber: number;
 }
 const initialState: PostState = {
-    value: []
+    value: [],
+    postNumber: 0
 }
 
 export const postSlice = createSlice({
@@ -21,11 +23,14 @@ export const postSlice = createSlice({
     reducers:{
         addPost: (state: any, action: PayloadAction<Post>) => {
             state.value.push(action.payload);
+            state.postNumber += 1;
+
         },
         removePost: (state: any, action: PayloadAction<Post>) => {
             state.value.forEach((post: Post) => {
                 if (post.id === action.payload.id) {
                     state.value.splice(post, 1);
+                    state.postNumber -= 1;
                 }
             })
         }
