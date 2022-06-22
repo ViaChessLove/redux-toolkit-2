@@ -18,16 +18,19 @@ const initialState: MarkState = {
     }
 }
 
+
+
 export const likeSlice = createSlice({
     name: 'content',
     initialState,
     reducers: {
+        
         setLike: (state: any, action: PayloadAction<Mark>) =>{
-            state.value = {
-                marked: true,
-                like: true,
-                dislike: false
-            }
+                state.value = {
+                    marked: true,
+                    like: true,
+                    dislike: false
+                }
         },
         setDislike: (state: any, action: PayloadAction<Mark>) =>{
             state.value = {

@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import postReducer from '../features/postSlice';
-import likeReducer from '../features/likeSlice'
+import likeReducer from '../features/likeSlice';
+import editReducer from '../features/editSlice';
 
 export const store = configureStore({
     reducer: {
         posts: postReducer,
-        like: likeReducer
+        like: likeReducer,
+        edit: editReducer
     }
 });
 
