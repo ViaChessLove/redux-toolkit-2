@@ -33,10 +33,17 @@ export const postSlice = createSlice({
                     state.postNumber -= 1;
                 }
             })
-        }
+        },
+        changePost: (state: any, action: PayloadAction<Post>) => {
+            state.value.forEach((post: Post) => {
+                if (post.id === action.payload.id) {
+                    post.post = action.payload.post;
+                }
+            })
+        },
     }
 })
 
-export const {addPost, removePost} = postSlice.actions;
+export const {addPost, removePost, changePost} = postSlice.actions;
 export default postSlice.reducer;
 

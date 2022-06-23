@@ -9,7 +9,7 @@ import {GlobalStyles} from './Global.style';
 import {v4 as uuid} from 'uuid';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   margin-top: 20px;
   margin-left: 43%;
   font-size: 18px;
@@ -43,9 +43,9 @@ const App = () =>{
       <GlobalStyles/>
       <h1 style={{textAlign: 'center'}}>Posts</h1>
       <h3 style={{textAlign: 'center'}}>Posts number - {numberOfPosts}</h3>
-      {posts.map((post: Post) => {  
-        return <PostCardStyled id={post.id} name={post.name} post={post.post}/>
-      })}
+        {posts.map((post: Post) => {  
+          return <PostCardStyled id={post.id} name={post.name} post={post.post}/>
+        })}
       <InputPost name='user' value={postNameInput} backgroundColor='white' placeholder='who r u' onChange={(e) => setPostNameInput(e.target.value)}/>
       <InputPost name='post' value={postPostInput} backgroundColor="lightyellow" placeholder="type your post" onChange={(e) => setPostPostInput(e.target.value)}/>
       <StyledButton onClick={handleAddPosts}>Post</StyledButton>
