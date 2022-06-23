@@ -7,6 +7,7 @@ import { RootState } from '../../app/store';
 import { changeState } from '../../features/editSlice';
 import { setDislike, setLike, unsetValue } from '../../features/likeSlice';
 import { removePost, Post, changePost } from '../../features/postSlice';
+import useHover from '../../hooks/useHover';
 
 interface PostCardProps {
     id: string;
@@ -37,7 +38,8 @@ const PostCard: React.FC<PostCardProps> = ({id, name, post, className}) => {
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
         inputRef.current?.focus();
-    }, [edit])
+    }, [edit]);
+    const [hoverRef, isHover] = useHover();
     return (
         <div>
             <div className={className}>
@@ -46,8 +48,9 @@ const PostCard: React.FC<PostCardProps> = ({id, name, post, className}) => {
                         onClick={() => dispatch(removePost({
                             id, name, post
                         }))}
+                        ref={hoverRef}
                         >
-                        <AiOutlineDelete/>
+                        {isHover? <AiFillDelete/>:<AiOutlineDelete/>}
                     </div>
                     <div
                         onClick={handleEdit}
@@ -84,7 +87,8 @@ const PostCard: React.FC<PostCardProps> = ({id, name, post, className}) => {
                             like: false,
                             dislike: false,
                         }))
-                        }}>
+                        }}
+                        >
                         {dislike? <AiFillDislike/>: <AiOutlineDislike/>}
                     </div>
                 </div>
