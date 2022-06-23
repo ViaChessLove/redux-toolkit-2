@@ -8,6 +8,7 @@ export interface Mark {
 
 interface MarkState{
     value: Mark;
+    likeNumber: number;
 }
 
 const initialState: MarkState = {
@@ -15,10 +16,15 @@ const initialState: MarkState = {
         marked: false,
         like: false,
         dislike: false
-    }
+    },
+    likeNumber: 0,
 }
 
-
+const checkLike = (state: any) => {
+    if (state.value.like === true){
+        state.likeNumber -= 1;
+    }
+}
 
 export const likeSlice = createSlice({
     name: 'content',
@@ -30,16 +36,20 @@ export const likeSlice = createSlice({
                     marked: true,
                     like: true,
                     dislike: false
-                }
+                };
+                state.likeNumber += 1;
+
         },
         setDislike: (state: any, action: PayloadAction<Mark>) =>{
+            checkLike(state);
             state.value = {
                 marked: true,
                 like: false,
                 dislike: true
-            }
+            }; 
         },
         unsetValue: (state: any, action: PayloadAction<Mark>) =>{
+            checkLike(state);
             state.value = {
                 marked: false,
                 like: false,

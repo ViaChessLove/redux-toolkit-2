@@ -27,6 +27,7 @@ const App = () =>{
 
   const numberOfPosts = useSelector((state: RootState) => state.posts.postNumber)
   
+  const likeCount = useSelector((state: RootState) => state.like.likeNumber);
 
   
   const handleAddPosts = () => {
@@ -43,6 +44,7 @@ const App = () =>{
       <GlobalStyles/>
       <h1 style={{textAlign: 'center'}}>Posts</h1>
       <h3 style={{textAlign: 'center'}}>Posts number - {numberOfPosts}</h3>
+      <div>Likes - {likeCount}</div>
         {posts.map((post: Post) => {  
           return <PostCardStyled id={post.id} name={post.name} post={post.post}/>
         })}
