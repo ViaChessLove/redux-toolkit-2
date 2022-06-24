@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-
 export interface Post {
     id: string;
     name: string;
@@ -24,7 +23,6 @@ export const postSlice = createSlice({
         addPost: (state: any, action: PayloadAction<Post>) => {
             state.value.push(action.payload);
             state.postNumber += 1;
-
         },
         removePost: (state: any, action: PayloadAction<Post>) => {
             state.value.forEach((post: Post) => {

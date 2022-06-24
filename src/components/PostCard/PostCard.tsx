@@ -60,12 +60,14 @@ const PostCard: React.FC<PostCardProps> = ({id, name, post, className}) => {
                     <div onClick={()=>{
                         like? 
                         dispatch(unsetValue({
+                            id: id,
                             marked: false,
                             like: false,
                             dislike: false,
                         }))
                         :
                         dispatch(setLike({
+                            id: id,
                             marked: false,
                             like: false,
                             dislike: false,
@@ -77,12 +79,14 @@ const PostCard: React.FC<PostCardProps> = ({id, name, post, className}) => {
                     <div onClick={()=>{
                         dislike? 
                         dispatch(unsetValue({
+                            id: id,
                             marked: false,
                             like: false,
                             dislike: false,
                         }))
                         :
                         dispatch(setDislike({
+                            id: id,
                             marked: false,
                             like: false,
                             dislike: false,

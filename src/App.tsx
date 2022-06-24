@@ -14,26 +14,25 @@ export const StyledButton = styled.button`
   margin-left: 43%;
   font-size: 18px;
 `
-
 const App = () =>{
   const dispatch = useDispatch();
-
+  
   const [postNameInput, setPostNameInput] = useState<string>('');
   const [postPostInput, setPostPostInput] = useState<string>('');
-
+  
   const posts = useSelector((state: RootState) => {
     return state.posts.value
   });
-
+  
   const numberOfPosts = useSelector((state: RootState) => state.posts.postNumber)
   
   const likeCount = useSelector((state: RootState) => state.like.likeNumber);
-
+  const id = uuid();
   
   const handleAddPosts = () => {
     if (!postNameInput || !postPostInput) return;
     dispatch(addPost({
-      id: uuid(),
+      id: id,
       name: postNameInput,
       post: postPostInput
     }));
@@ -56,3 +55,4 @@ const App = () =>{
 }
 
 export default App;
+
